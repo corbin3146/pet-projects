@@ -18,6 +18,6 @@ public class Main {
 		//what structure to store asteroid objects linked list?
 		//
 		//notes:
-		//
+		//cool
 	}
 }
