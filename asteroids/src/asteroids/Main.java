@@ -19,5 +19,6 @@ public class Main {
 		//
 		//notes:
 		//cool
+		Game G = new Game();
 	}
 }
