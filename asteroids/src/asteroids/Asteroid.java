@@ -3,24 +3,34 @@ package asteroids;
 import java.util.Random;
 
 public class Asteroid {
-	int xPos;
-	int yPos;
+	double xPos;
+	double yPos;
 	int size;
-	int speed;//might be global later
-	int direction;
+	double speed;//might be global later
+	double direction;
 	public Asteroid() {
-		Random r = new Random();
 		xPos = 0;
 		yPos = 0;
 		size = 0;
 		speed = 0;
 		direction = 0;
 	}
-	public Asteroid(int x, int y, int sp, int dir) {
-		Random r = new Random();
+	public Asteroid(double x, double y, double sp, double dir, int siz) {
 		xPos = x;
 		yPos = y;
 		speed = sp;
 		direction = dir;
+		size = siz;
+	}
+	void move() {
+		
+		xPos = (xPos + Math.cos(Math.toRadians(direction)) * speed)%1000;
+		yPos = (yPos + Math.sin(Math.toRadians(direction)) * speed)%1000;
+		if (xPos<0) {
+			xPos = 1000 - xPos;
+		}
+		if (yPos<0) {
+			yPos = 1000 - yPos;
+		}
 	}
 }
