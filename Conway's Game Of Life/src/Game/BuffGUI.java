@@ -80,7 +80,7 @@ public class BuffGUI {
 				if (e.getID() == KeyEvent.KEY_TYPED) {
 
 					if (e.getKeyChar() == 'w') {
-						yOfset -= yMovement;
+						yOfset += yMovement;
 						update();
 					}
 
@@ -90,7 +90,7 @@ public class BuffGUI {
 					}
 
 					if (e.getKeyChar() == 's') {
-						yOfset += yMovement;
+						yOfset -= yMovement;
 						update();
 					}
 
@@ -407,7 +407,7 @@ public class BuffGUI {
 					if(fpsCap > 0)
 					 try {
 //						 System.out.println(()+"-"+(oldTime/1000000));
-					 Thread.sleep(Math.max(0,(1000/fpsCap)-((System.nanoTime()-oldTime)/1000000)));
+					// Thread.sleep(Math.max(0,(1000/fpsCap)-((System.nanoTime()-oldTime)/1000000)));
 					 } catch (Exception e) {
 					 // TODO Auto-generated catch block
 					 e.printStackTrace();
