@@ -11,65 +11,67 @@ public class UserInterface {
 	boolean a;
 	boolean s;
 	boolean d;
-	AsteroidGraphics g;
+	boolean space;
+	AsteroidPanel g;
 	JFrame frame;
 
-	public UserInterface(Player p, AsteroidGraphics AG, LinkedList<Missile> missiles) {
+	public UserInterface(AsteroidPanel AG) {
 
 		frame = new JFrame();
+		frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+		
 		// this is a JPanel
 		g = AG;
 
 		KeyListener kl = new KeyListener() {
-			
-			
+
 			@Override
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
-				if(e.getKeyChar() == ' ') {
-					System.out.println("space");
-					missiles.add(new Missile(p));
-				}
+				
 			}
-			
+
 			@Override
 			public void keyReleased(KeyEvent e) {
 				// TODO Auto-generated method stub
-				if(e.getKeyChar() == 'w') {
+				if (e.getKeyChar() == 'w') {
 					w = false;
 				}
-				if(e.getKeyChar() == 'a') {
+				if (e.getKeyChar() == 'a') {
 					a = false;
 				}
-				if(e.getKeyChar() == 's') {
+				if (e.getKeyChar() == 's') {
 					s = false;
 				}
-				if(e.getKeyChar() == 'd') {
+				if (e.getKeyChar() == 'd') {
 					d = false;
 				}
-				
+				if (e.getKeyChar() == ' ') {
+					space = false;
+				}
 			}
-			
+
 			@Override
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
-				if(e.getKeyChar() == 'w') {
+				if (e.getKeyChar() == 'w') {
 					w = true;
 				}
-				if(e.getKeyChar() == 'a') {
+				if (e.getKeyChar() == 'a') {
 					a = true;
 				}
-				if(e.getKeyChar() == 's') {
+				if (e.getKeyChar() == 's') {
 					s = true;
 				}
-				if(e.getKeyChar() == 'd') {
+				if (e.getKeyChar() == 'd') {
 					d = true;
+				}
+				if (e.getKeyChar() == ' ') {
+					space = true;
 				}
 			}
 		};
-		
 
-		frame.setSize(1000, 1000);
 		frame.add(g);
 		frame.addKeyListener(kl);
 		frame.setVisible(true);

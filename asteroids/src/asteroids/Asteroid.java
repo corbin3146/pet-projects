@@ -1,5 +1,7 @@
 package asteroids;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.Random;
 
 public class Asteroid {
@@ -8,6 +10,11 @@ public class Asteroid {
 	int size;
 	double speed;//might be global later
 	double direction;
+	
+	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	int frameWidth = screenSize.width;
+	int frameHeight = screenSize.height;
+	
 	public Asteroid() {
 		xPos = 0;
 		yPos = 0;
@@ -24,13 +31,13 @@ public class Asteroid {
 	}
 	void move() {
 		
-		xPos = (xPos + Math.cos(Math.toRadians(direction)) * speed)%1000;
-		yPos = (yPos + Math.sin(Math.toRadians(direction)) * speed)%1000;
+		xPos = (xPos + Math.cos(Math.toRadians(direction)) * speed)%frameWidth;
+		yPos = (yPos + Math.sin(Math.toRadians(direction)) * speed)%frameHeight;
 		if (xPos<0) {
-			xPos = 1000 - xPos;
+			xPos = frameWidth - xPos;
 		}
 		if (yPos<0) {
-			yPos = 1000 - yPos;
+			yPos = frameHeight - yPos;
 		}
 	}
 }

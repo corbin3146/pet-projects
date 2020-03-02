@@ -1,24 +1,35 @@
 package asteroids;
 
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.util.LinkedList;
 
 import javax.swing.JPanel;
 
-public class AsteroidGraphics extends JPanel{
+
+public class AsteroidPanel extends JPanel{
+	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	int frameWidth = screenSize.width;
+	int frameHeight = screenSize.height;
+	
+	
 	Player p;
 	LinkedList<Asteroid> asteroidBelt;
 	LinkedList<Missile> missiles;
 	int asteroidScale = 20;
 	
-	public AsteroidGraphics(Player p,LinkedList<Asteroid> asteroidBelt, LinkedList<Missile> missiles) {
+	public AsteroidPanel(Player p,LinkedList<Asteroid> asteroidBelt, LinkedList<Missile> missiles) {
 		this.p = p;
 		this.asteroidBelt = asteroidBelt;
 		this.missiles = missiles;
 	}
 	
 	public void paint(Graphics g) {
-		g.clearRect(0, 0, 1000, 1000);
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, frameWidth, frameHeight);
+		g.setColor(Color.WHITE);
 		drawPlayer(g);
 		drawAsteroids(g);
 		drawMissiles(g);
@@ -28,14 +39,15 @@ public class AsteroidGraphics extends JPanel{
 	void drawMissiles(Graphics g) {
 		for(int i=0; i< missiles.size();i++) {
 			Missile boomie = missiles.get(i);
-			g.fillOval((int)boomie.xPos, (int)boomie.yPos, 5, 5);
+			g.fillOval((int)boomie.xPos-3, (int)boomie.yPos-3, 6, 6);
 		}
 	}
 	
 	void drawAsteroids(Graphics g) {
 		for(int i=0; i< asteroidBelt.size();i++) {
 			Asteroid roid = asteroidBelt.get(i);
-			g.fillOval((int)roid.xPos, (int)roid.yPos, roid.size*asteroidScale, roid.size*asteroidScale);
+			int radius = roid.size*asteroidScale/2;
+			g.drawOval((int)roid.xPos-radius, (int)roid.yPos-radius, roid.size*asteroidScale, roid.size*asteroidScale);
 		}
 	}
 	
@@ -46,40 +58,17 @@ public class AsteroidGraphics extends JPanel{
 		 * I want to have the player made up of multiple shapes each with a point on the player's center
 		 * this will alow the player rotate on it's center as the shapes rotate individually
 		 * screw it, ill do the rotation myself
+		 * 
 		 * If you rotate point (px, py) around point (ox, oy) by angle theta you'll get: 
 		 * p'x = cos(theta) * (px-ox) - sin(theta) * (py-oy) + ox. 
 		 * p'y = sin(theta) * (px-ox) + cos(theta) * (py-oy) + oy. 
 		 * this is an easy way to rotate a point in 2D.
-		 * */
+		 */
 		
-		
-		int x0 = (int) p.xPos;
-		int y0 = (int) p.yPos;
-		double theta = Math.toRadians(p.direction);
-		int width = p.width;
-		int length = p.length;
-		double cosTheta = Math.cos(theta);
-		double sinTheta = Math.sin(theta);
-		
-		
-		int x1 = (int) ((0 - sinTheta) * width + x0);
-		int y1 = (int) (cosTheta * width + y0);
-		
-		int x2 = (int)(cosTheta * length + x0);
-		int y2 = (int)(sinTheta * length + y0);
-		
-		int x3 = (int) (0 - sinTheta * (-1)* width + x0);
-		int y3 = (int) (cosTheta * (-1) * width + y0);
-		
-		
-		int x4 = (int)(cosTheta * (-1) * width + x0);
-		int y4 = (int)(sinTheta * (-1) * width + y0);
-		
-		int[] xPoints = {x1,x2,x3,x4};
-		int[] yPoints = {y1,y2,y3,y4};
+		int[] xPoints = {(int) p.x1,(int) p.x2,(int) p.x3,(int) p.x4};
+		int[] yPoints = {(int) p.y1,(int) p.y2,(int) p.y3,(int) p.y4};
 
-		g.fillPolygon(xPoints, yPoints, 4);
-		
+		g.drawPolygon(xPoints, yPoints, 4);
 		
 		return;
 	}
