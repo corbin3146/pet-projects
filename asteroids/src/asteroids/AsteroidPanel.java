@@ -14,11 +14,12 @@ public class AsteroidPanel extends JPanel{
 	int frameWidth = screenSize.width;
 	int frameHeight = screenSize.height;
 	
-	
 	Player p;
 	LinkedList<Asteroid> asteroidBelt;
 	LinkedList<Missile> missiles;
 	int asteroidScale = 20;
+	
+	boolean winScreen = false;
 	
 	public AsteroidPanel(Player p,LinkedList<Asteroid> asteroidBelt, LinkedList<Missile> missiles) {
 		this.p = p;
@@ -33,8 +34,12 @@ public class AsteroidPanel extends JPanel{
 		drawPlayer(g);
 		drawAsteroids(g);
 		drawMissiles(g);
+		if(winScreen) {
+			g.drawString("You Win", 500, 500);
+		}
 		return;
 	}
+	
 	
 	void drawMissiles(Graphics g) {
 		for(int i=0; i< missiles.size();i++) {

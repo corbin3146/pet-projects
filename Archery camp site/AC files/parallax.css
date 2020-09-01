@@ -1,0 +1,27 @@
+body, html{
+  height: 100%;
+}
+.parallax {
+	/*fix text*/
+	position: relative;
+	text-align: center;
+	color: white;
+	text-shadow: 0 0 5px #000;
+	line-height: fill;
+
+	/* Set a specific height */
+	height: 100vh;
+
+	/* Create the parallax scrolling effect */
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.centered {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}

@@ -15,14 +15,21 @@ public class Game {
 	}
 
 	Game() {
-
+		
+		int score =0;
+		
 		Player p = new Player(0, 0, 500, 500);
 
 		LinkedList<Asteroid> asteroidBelt = new LinkedList<Asteroid>();
 		LinkedList<Missile> missiles = new LinkedList<Missile>();
 
-		asteroidBelt.add(new Asteroid(0, 0, 5, 70, 4));
-		asteroidBelt.add(new Asteroid(900, 900, 3, 45, 2));
+		//asteroidBelt.add(new Asteroid(0, 0, 5, 70, 4));
+		//asteroidBelt.add(new Asteroid(900, 900, 3, 45, 2));
+		
+		for(int i=0;i<10;i++) {
+			asteroidBelt.add(new Asteroid());
+		}
+		
 
 		AsteroidPanel APanel = new AsteroidPanel(p, asteroidBelt, missiles);
 		UserInterface UI = new UserInterface(APanel);
@@ -34,29 +41,30 @@ public class Game {
 				long oldTime = System.nanoTime();
 				long newTime;
 				int m = 0;
-				while (true) {
+				
+				boolean running = true;
+				while (running) {
 
 					if (UI.w) {
 						p.speed += 0.3;
 					}
 					if (UI.a) {
-						p.direction -= 5;
+						p.direction -= 7;
 					}
 					if (UI.s) {
 						p.speed -= 0.5;
 					}
 					if (UI.d) {
-						p.direction += 5;
+						p.direction += 7;
 					}
 					if (UI.space) {
-						if (m == 0) {
+						if (m <= 0) {
 							m = fpsCap / missilesPerSecond;
 							missiles.add(new Missile(p));
-						} else {
-							m--;
 						}
 					}
-
+					m--;
+					
 					p.move();
 					for (int i = 0; i < asteroidBelt.size(); i++) {
 						asteroidBelt.get(i).move();
@@ -69,7 +77,7 @@ public class Game {
 						}
 					}
 
-					checkCollisions(asteroidBelt, p, missiles);
+					running = checkCollisions(asteroidBelt, p, missiles);
 
 					APanel.repaint();
 
@@ -84,6 +92,11 @@ public class Game {
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
+					
+					
+					if(asteroidBelt.size() == 0 && !APanel.winScreen) {
+						APanel.winScreen = true;
+					}
 
 				}
 			}
@@ -93,13 +106,13 @@ public class Game {
 		thread1.start();
 	}
 
-	void checkCollisions(LinkedList<Asteroid> asteroidBelt, Player p, LinkedList<Missile> missiles) {
+	boolean checkCollisions(LinkedList<Asteroid> asteroidBelt, Player p, LinkedList<Missile> missiles) {
 		for (int i = 0; i < asteroidBelt.size(); i++) {
 			Asteroid roid = asteroidBelt.get(i);
 			double distance = Math.sqrt(Math.pow(roid.xPos - p.xPos, 2) + Math.pow(roid.yPos - p.yPos, 2));
 			if (distance < (p.length + roid.size * 20)) {
 				if (playerPointsCollision(p, roid)) {
-					System.exit(0);
+					return false;
 				}
 			}
 			for (int j = 0; j < missiles.size(); j++) {
@@ -119,6 +132,7 @@ public class Game {
 			}
 
 		}
+		return true;
 	}
 
 	boolean playerPointsCollision(Player p, Asteroid roid) {

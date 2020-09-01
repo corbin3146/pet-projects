@@ -16,11 +16,12 @@ public class Asteroid {
 	int frameHeight = screenSize.height;
 	
 	public Asteroid() {
-		xPos = 0;
-		yPos = 0;
-		size = 0;
-		speed = 0;
-		direction = 0;
+		Random r = new Random();
+		xPos = r.nextDouble() * frameWidth;
+		yPos = r.nextDouble() * frameHeight;
+		size = (int) (1 + r.nextDouble() * 4);
+		speed = 1 + r.nextDouble() * 6;
+		direction = r.nextDouble() * 360;
 	}
 	public Asteroid(double x, double y, double sp, double dir, int siz) {
 		xPos = x;

@@ -1,0 +1,41 @@
+.navList {
+  position: sticky;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  top:0;
+}
+
+#construction {
+	background-color: darkorange;
+   
+}
+
+
+.navLi {
+border-right: 1px solid #bbb;
+list-style-type: none;
+float: left;
+max-width: 20%;
+}
+
+.navLi:last-child {
+  border-right: none;
+}
+
+.navLi a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  background-color: black;
+  color:white;
+}
+
+.navLi a:hover {
+  color: blue;
+}
+.navLi a:active{
+  background-color: gray;
+}
