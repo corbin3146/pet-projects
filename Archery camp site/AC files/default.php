@@ -18,18 +18,18 @@
 		
 			/*set some backgrounds*/
 			.welcome{
-				background-image: url('/Archery Camp 2019/IMG_3979.jpg');
+				background-image: url('Images/IMG_3979.jpg');
 			}
 
 			.activities{
-				 background-image: url('/Archery Camp 2019/IMG_4171.jpg');
+				 background-image: url('Images/IMG_4171.jpg');
 			}
 			
 			.extra{
-				 background-image: url('/Archery Camp 2019/IMG_4150.jpg');
+				 background-image: url('Images/IMG_4150.jpg');
 			}
 			.safety{
-				 background-image: url('/Archery Camp 2019/IMG_3993.jpg');
+				 background-image: url('Images/IMG_3993.jpg');
 			}
 		</style>
     </head>

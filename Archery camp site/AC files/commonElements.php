@@ -1,6 +1,6 @@
 <?php 
 	function LinkCSS($CSS) {
-		echo "<LINK rel=stylesheet type=\"text/css\" href=\"" . $CSS . "\">";
+		echo "<LINK rel=stylesheet type=\"text/css\" href=\"CSS/" . $CSS . "\">";
 	}
 	
 	$NavBar = '
@@ -30,16 +30,16 @@
 	<!-- this is the animation that the count down clock lives inside of-->
 	<div>
 		<table><tr>
-			<td><img id = "frame1" src="archer.png" style="height:20vh; width:20vw"><td>
-			<td><img id = "frame2" src="blank.png" style="height:20vh; width:20vw"><td>
+			<td><img id = "frame1" src="Images/archer.png" style="height:20vh; width:20vw"><td>
+			<td><img id = "frame2" src="Images/blank.png" style="height:20vh; width:20vw"><td>
 			<td><div  class= "countdown">
-				<img id = "frame3"src="blank.png" style="height:20vh; width:20vw">
+				<img id = "frame3"src="Images/blank.png" style="height:20vh; width:20vw">
 				<div class=\'centered\'> 
 					<p id=\'clockText\' style="color:black">days till AC</p>
 				</div>
 			</div><td>
-			<td><img id = "frame4"src="blank.png" style="height:20vh; width:20vw"><td>
-			<td><img id = "frame5"src="target.png" style="height:20vh; width:20vw"><td>
+			<td><img id = "frame4"src="Images/blank.png" style="height:20vh; width:20vw"><td>
+			<td><img id = "frame5"src="Images/target.png" style="height:20vh; width:20vw"><td>
 		</tr></table>
 	</div>
 	
@@ -79,24 +79,24 @@ var x = setInterval(function() {//generic function
 var x = 0;
 var y = setInterval(function(){
 	if(x == 0){
-	document.getElementById("frame5").src = "target.png";
-	document.getElementById("frame1").src = "archer.png";
+	document.getElementById("frame5").src = "Images/target.png";
+	document.getElementById("frame1").src = "Images/archer.png";
 	}
 	if(x == 1){
-	document.getElementById("frame2").src = "arrow1.png";
+	document.getElementById("frame2").src = "Images/arrow1.png";
 	}
 	if(x == 2){
-	document.getElementById("frame2").src = "blank.png";
-	document.getElementById("frame3").src = "arrow2.png";
-	document.getElementById("frame1").src = "archerLooking.png";
+	document.getElementById("frame2").src = "Images/blank.png";
+	document.getElementById("frame3").src = "Images/arrow2.png";
+	document.getElementById("frame1").src = "Images/archerLooking.png";
 	}
 	if(x == 3){
-	document.getElementById("frame3").src = "blank.png";
-	document.getElementById("frame4").src = "arrow2.png";
+	document.getElementById("frame3").src = "Images/blank.png";
+	document.getElementById("frame4").src = "Images/arrow2.png";
 	}
 	if(x == 4){
-	document.getElementById("frame4").src = "blank.png";
-	document.getElementById("frame5").src = "targetHit.png";
+	document.getElementById("frame4").src = "Images/blank.png";
+	document.getElementById("frame5").src = "Images/targetHit.png";
 	}
 	if(x==5){
 	x= -1;
