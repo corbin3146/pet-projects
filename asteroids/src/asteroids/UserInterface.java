@@ -27,7 +27,7 @@ public class UserInterface {
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
 				if(e.getKeyChar() == ' ') {
-					System.out.println("space");
+					//System.out.println("space");
 					missiles.add(new Missile(p));
 				}
 			}
